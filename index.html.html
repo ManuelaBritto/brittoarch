@@ -1,0 +1,1048 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10140F">
+    <meta name="description" content="Britto Architecture — arquitetura inovadora, projetos personalizados e sustentabilidade.">
+    <title>Britto Architecture | Arquitetura e Design</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #DDE0D9;
+            --paper: #F0F1EC;
+            --dark: #10140F;
+            --dark-soft: #191E18;
+            --text: #20251F;
+            --muted: #62685E;
+            --white: #FFFFFF;
+            --accent: #A7B49C;
+            --accent-light: #D5DFCD;
+            --header-height: 82px;
+            --radius: 12px;
+            --shadow: 0 12px 35px rgba(0, 0, 0, .12);
+            --transition: .35s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-height) + 20px);
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "DM Sans", Arial, sans-serif;
+            line-height: 1.75;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: "Manrope", Arial, sans-serif;
+            line-height: 1.3;
+        }
+
+        h1 {
+            margin: 0 0 22px;
+            color: var(--dark);
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: -.055em;
+        }
+
+        h3, h4 {
+            color: var(--muted);
+            text-align: center;
+        }
+
+        h3 {
+            font-size: clamp(.98rem, 1.3vw, 1.1rem);
+            font-weight: 400;
+            line-height: 1.9;
+        }
+
+        p {
+            margin-top: 0;
+        }
+
+        section[id], div[id], footer[id] {
+            scroll-margin-top: calc(var(--header-height) + 20px);
+        }
+
+        header {
+            position: fixed;
+            z-index: 1000;
+            inset: 0 0 auto;
+            width: 100%;
+            min-height: var(--header-height);
+            padding: 0 6%;
+            background: rgba(16, 20, 15, .94);
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+            transition: background var(--transition);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 185px;
+            height: 66px;
+            object-fit: contain;
+            object-position: left center;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: clamp(18px, 3vw, 40px);
+        }
+
+        .menu a {
+            position: relative;
+            color: rgba(255, 255, 255, .84);
+            font-size: .88rem;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 12px 0;
+            transition: color var(--transition);
+        }
+
+        .menu a::after {
+            content: "";
+            position: absolute;
+            bottom: 3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            border-radius: 5px;
+            background: var(--accent);
+            transition: width var(--transition);
+        }
+
+        .menu a:hover {
+            color: var(--white);
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            border: 1px solid rgba(255, 255, 255, .2);
+            background: rgba(255, 255, 255, .05);
+            color: white;
+            font-size: 1.45rem;
+            line-height: 1;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 580px;
+            height: min(88vh, 850px);
+            margin-top: var(--header-height);
+            background: #303830;
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            animation: heroZoom 16s ease-in-out infinite alternate;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(10, 15, 9, .68),
+                rgba(10, 15, 9, .15),
+                rgba(10, 15, 9, .45)
+            );
+            pointer-events: none;
+        }
+
+        .hero-logo {
+            position: relative;
+            z-index: 2;
+            width: min(430px, 75vw);
+            max-height: 430px;
+            object-fit: contain;
+            filter: drop-shadow(0 12px 30px rgba(0, 0, 0, .32));
+            animation: appear 1s ease both;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroZoom {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.06);
+            }
+        }
+
+        .intro {
+            position: relative;
+            padding: clamp(65px, 9vw, 120px) 7%;
+            background: var(--paper);
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, .08);
+        }
+
+        .intro-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .intro h1 {
+            margin: 0 0 22px;
+        }
+
+        .intro h3 {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-block {
+            margin-top: 85px;
+            padding-top: 65px;
+            border-top: 1px solid rgba(32, 37, 31, .12);
+        }
+
+        .section-kicker {
+            display: block;
+            margin-bottom: 13px;
+            color: #75866B;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .24em;
+            text-transform: uppercase;
+        }
+
+        .service-intro {
+            margin-top: 85px;
+            padding-top: 65px;
+            border-top: 1px solid rgba(32, 37, 31, .12);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 24px;
+            max-width: 1300px;
+            margin: 45px auto 0;
+        }
+
+        .service-card {
+            min-width: 0;
+            text-align: left;
+        }
+
+        .image-container {
+            position: relative;
+            isolation: isolate;
+            width: 100%;
+            overflow: hidden;
+            background: #343B32;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .service-card .image-container {
+            height: 290px;
+            border-radius: 10px;
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .7s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .service-card:hover img {
+            transform: scale(1.07);
+        }
+
+        .service-card p {
+            color: var(--text);
+            font-family: "Manrope", sans-serif;
+            font-size: .98rem;
+            font-weight: 800;
+            line-height: 1.5;
+            margin: 19px 0 0;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            background: linear-gradient(
+                180deg,
+                rgba(12, 17, 11, .38),
+                rgba(12, 17, 11, .83)
+            );
+            color: white;
+            text-align: center;
+            opacity: 0;
+            transition: opacity var(--transition);
+            pointer-events: none;
+        }
+
+        .overlay .text {
+            max-width: 330px;
+            font-size: .94rem;
+            line-height: 1.8;
+            transform: translateY(15px);
+            transition: transform var(--transition);
+        }
+
+        .image-container:hover .overlay,
+        .image-container:focus-within .overlay {
+            opacity: 1;
+        }
+
+        .image-container:hover .overlay .text,
+        .image-container:focus-within .overlay .text {
+            transform: translateY(0);
+        }
+
+        .philosophy {
+            position: relative;
+            padding: clamp(65px, 8vw, 105px) 7%;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(167, 180, 156, .16), transparent 65%),
+                var(--paper);
+            text-align: center;
+        }
+
+        .philosophy h1 {
+            margin-top: 0;
+        }
+
+        .philosophy h3 {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .dark-section {
+            position: relative;
+            background: var(--dark);
+            padding: clamp(65px, 8vw, 105px) 6%;
+            color: white;
+        }
+
+        .dark-section h1 {
+            color: white;
+            margin: 0 0 55px;
+        }
+
+        .dark-section .section-kicker {
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .wide-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 28px;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .wide-grid .image-container {
+            height: clamp(250px, 27vw, 380px);
+            border: 1px solid rgba(255, 255, 255, .08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .28);
+        }
+
+        .wide-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .7s ease;
+        }
+
+        .wide-grid .image-container:hover img {
+            transform: scale(1.055);
+        }
+
+        .projects {
+            background: var(--dark);
+            padding-bottom: 75px;
+        }
+
+        .projects-banner {
+            position: relative;
+            width: 100%;
+            height: clamp(380px, 59vw, 780px);
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+            background: #303830;
+        }
+
+        .projects-banner > img:first-child {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .projects-banner::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(0, 0, 0, .25),
+                rgba(0, 0, 0, .55)
+            );
+        }
+
+        .projects-logo {
+            position: relative;
+            z-index: 2;
+            width: min(500px, 75vw);
+            max-height: 80%;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 25px rgba(0, 0, 0, .4));
+            animation: appear 1s ease both;
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+            padding: 0 6%;
+            max-width: 1700px;
+            margin: 35px auto;
+        }
+
+        .project-gallery .image-container {
+            height: clamp(240px, 23vw, 340px);
+            border: 1px solid rgba(255, 255, 255, .09);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .project-gallery .image-container:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 40px rgba(0, 0, 0, .4);
+        }
+
+        .project-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .7s ease;
+        }
+
+        .project-gallery .image-container:hover img {
+            transform: scale(1.06);
+        }
+
+        .portfolio-note {
+            margin: 65px 20px 0;
+            color: rgba(255, 255, 255, .8);
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .portfolio-note a {
+            display: inline-block;
+            margin-left: 5px;
+            color: var(--accent-light);
+            font-weight: 700;
+            text-underline-offset: 6px;
+            transition: color var(--transition);
+        }
+
+        .portfolio-note a:hover {
+            color: white;
+        }
+
+        footer {
+            position: relative;
+            width: 100%;
+            background: var(--dark);
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .footer-image {
+            width: 100%;
+            height: auto;
+            min-height: 250px;
+            max-height: 690px;
+            object-fit: cover;
+            object-position: center;
+            opacity: .9;
+        }
+
+        .image-fallback {
+            position: relative;
+            background: linear-gradient(135deg, #424B40, #182016 65%, #596153);
+        }
+
+        .image-fallback::after {
+            content: "BRITTO ARCHITECTURE";
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            padding: 15px;
+            color: rgba(255, 255, 255, .75);
+            font-family: "Manrope", sans-serif;
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-align: center;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #AAB9A1;
+            outline-offset: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+
+        @media (max-width: 1050px) {
+            :root {
+                --header-height: 74px;
+            }
+
+            header {
+                padding: 0 4%;
+            }
+
+            .logo img {
+                width: 160px;
+            }
+
+            .service-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 30px;
+            }
+
+            .service-card .image-container {
+                height: 320px;
+            }
+
+            .project-gallery {
+                gap: 18px;
+                padding: 0 4%;
+            }
+
+            .project-gallery .image-container {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            :root {
+                --header-height: 68px;
+            }
+
+            header {
+                padding: 0 18px;
+                gap: 12px;
+            }
+
+            .logo img {
+                width: 145px;
+                height: 56px;
+            }
+
+            .menu-toggle {
+                display: block;
+                flex-shrink: 0;
+            }
+
+            .menu {
+                position: absolute;
+                top: calc(100% + 1px);
+                left: 0;
+                right: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 12px 22px 20px;
+                background: rgba(16, 20, 15, .99);
+                border-bottom: 1px solid rgba(255, 255, 255, .1);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, .25);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-8px);
+                transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+            }
+
+            .menu.open {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .menu a {
+                padding: 14px 4px;
+                border-bottom: 1px solid rgba(255, 255, 255, .08);
+            }
+
+            .menu a:last-child {
+                border-bottom: 0;
+            }
+
+            .hero {
+                min-height: 400px;
+                height: 68vh;
+                max-height: 600px;
+            }
+
+            .hero-logo {
+                width: min(330px, 78vw);
+                max-height: 330px;
+            }
+
+            .intro {
+                padding: 58px 6%;
+            }
+
+            .intro-block,
+            .service-intro {
+                margin-top: 55px;
+                padding-top: 45px;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                max-width: 430px;
+                margin-top: 35px;
+            }
+
+            .service-card .image-container {
+                height: 320px;
+            }
+
+            .service-card p {
+                margin-top: 15px;
+                font-size: 1rem;
+            }
+
+            .overlay {
+                opacity: 1;
+                background: linear-gradient(
+                    180deg,
+                    rgba(12, 17, 11, .16),
+                    rgba(12, 17, 11, .76)
+                );
+            }
+
+            .overlay .text {
+                transform: none;
+                font-size: .92rem;
+            }
+
+            .philosophy {
+                padding: 60px 6%;
+            }
+
+            .dark-section {
+                padding: 60px 6%;
+            }
+
+            .dark-section h1 {
+                margin-bottom: 35px;
+            }
+
+            .wide-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                max-width: 500px;
+            }
+
+            .wide-grid .image-container {
+                height: 310px;
+            }
+
+            .projects-banner {
+                height: 400px;
+            }
+
+            .project-gallery {
+                grid-template-columns: 1fr;
+                gap: 23px;
+                padding: 0 6%;
+                margin: 28px auto;
+                max-width: 520px;
+            }
+
+            .project-gallery .image-container {
+                height: 310px;
+            }
+
+            .portfolio-note {
+                margin: 50px 22px 0;
+                font-size: .94rem;
+            }
+
+            .footer-image {
+                min-height: 200px;
+                object-fit: cover;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .logo img {
+                width: 125px;
+            }
+
+            .hero {
+                min-height: 330px;
+            }
+
+            .service-card .image-container,
+            .wide-grid .image-container,
+            .project-gallery .image-container {
+                height: 245px;
+            }
+
+            .intro,
+            .philosophy,
+            .dark-section {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="cabecalho">
+        <a class="logo" href="#BEM-VINDO" aria-label="Britto Architecture - início">
+            <img src="foto/logo1.png" alt="Logo Britto Architecture">
+        </a>
+
+        <button class="menu-toggle"
+                type="button"
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="menu-principal">
+            ☰
+        </button>
+
+        <nav class="menu" id="menu-principal" aria-label="Menu principal">
+            <a href="#BEM-VINDO">Home</a>
+            <a href="#Oq fazemos">Serviços</a>
+            <a href="#Projetos">Projetos</a>
+            <a href="#rodape">Contato</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" aria-label="Apresentação da Britto Architecture">
+            <img class="hero-bg"
+                 src="https://cached.imagescaler.hbpl.co.uk/resize/scaleHeight/546/cached.offlinehbpl.hbpl.co.uk/galleries/NAW/NUH-ORAL-HEALTH_5.jpg"
+                 alt=""
+                 fetchpriority="high">
+
+            <img id="BEM-VINDO"
+                 class="hero-logo"
+                 src="foto/logo2.png"
+                 alt="Britto Architecture">
+        </section>
+
+        <section class="intro">
+            <div class="intro-content">
+                <span class="section-kicker">Arquitetura e design</span>
+                <h1>BEM-VINDO À BRITTO ARCHITECTURE!</h1>
+                <h3>Onde transformamos sonhos em realidade através da arquitetura inovadora e sustentável.</h3>
+
+                <div class="intro-block">
+                    <span class="section-kicker">Nossa história</span>
+                    <h1>QUEM SOMOS</h1>
+                    <h3>Somos uma equipe apaixonada de arquitetos e designers comprometidos em criar espaços inspiradores e funcionais que refletem a identidade única de cada cliente. Com anos de experiência no setor, combinamos criatividade, expertise técnica e um profundo entendimento das necessidades dos nossos clientes para entregar projetos excepcionais.</h3>
+                </div>
+
+                <div class="service-intro" id="Oq fazemos">
+                    <span class="section-kicker">Nossas especialidades</span>
+                    <h1>O QUE FAZEMOS</h1>
+                    <h3>Oferecemos uma gama completa de serviços de arquitetura, desde a concepção inicial até a conclusão do projeto. Nossos serviços incluem:</h3>
+
+                    <div class="service-grid">
+                        <article class="service-card">
+                            <div class="image-container">
+                                <img src="https://www.artisticstairs.com/wp-content/uploads/2020/11/Free-Consultation-for-Staircases-and-Railings.jpg" alt="Projeto arquitetônico com escadaria" loading="lazy">
+                                <div class="overlay">
+                                    <div class="text">Desenvolvemos projetos personalizados que harmonizam estética e funcionalidade.</div>
+                                </div>
+                            </div>
+                            <p>Projetos Arquitetônicos</p>
+                        </article>
+
+                        <article class="service-card">
+                            <div class="image-container">
+                                <img src="https://images.homify.com/images/a_0,c_limit,f_auto,h_1024,q_auto,w_1024/v1439320370/p/photo/image/815410/20150303_KI_%C3%BCLARIS_38e/fotos-de-salas-de-estar-moderno-por-designer-de-interiores-e-paisagista-iara-kilaris.jpg" alt="Ambiente de interiores moderno" loading="lazy">
+                                <div class="overlay">
+                                    <div class="text">Criamos ambientes que cativam e melhoram a qualidade de vida.</div>
+                                </div>
+                            </div>
+                            <p>Designers de interiores</p>
+                        </article>
+
+                        <article class="service-card">
+                            <div class="image-container">
+                                <img src="https://www.vitabri.com/wp-inside/uploads/2023/02/demarche-rse-environnement-480x360.jpg" alt="Arquitetura e sustentabilidade" loading="lazy">
+                                <div class="overlay">
+                                    <div class="text">Integrando práticas sustentáveis para projetos que respeitam o meio ambiente.</div>
+                                </div>
+                            </div>
+                            <p>Consultoria e Sustentabilidade</p>
+                        </article>
+
+                        <article class="service-card">
+                            <div class="image-container">
+                                <img src="https://pro.webikeo.fr/wp-content/uploads/2019/01/finance-droit-webinar-2018.png" alt="Planejamento e gestão de projetos" loading="lazy">
+                                <div class="overlay">
+                                    <div class="text">Garantimos a execução eficiente e dentro do prazo.</div>
+                                </div>
+                            </div>
+                            <p>Gestão de Projetos</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="philosophy">
+            <span class="section-kicker">Nossa essência</span>
+            <h1>FILOSOFIA DA EQUIPE BRITTO</h1>
+            <h3>Na base de tudo o que fazemos está o compromisso com a qualidade, inovação e excelência. Acreditamos que cada projeto é uma oportunidade única para criar algo significativo e duradouro.</h3>
+        </section>
+
+        <section class="dark-section">
+            <span class="section-kicker">O que oferecemos</span>
+            <h1>SERVIÇOS</h1>
+
+            <div class="wide-grid">
+                <div class="image-container">
+                    <img src="https://th.bing.com/th/id/OIP.iNZaebAhOdoeqD6ArHCwsAAAAA?rs=1&pid=ImgDetMain" alt="Projeto residencial" loading="lazy">
+                    <div class="overlay">
+                        <div class="text">De casas contemporâneas a renovações históricas, criamos lares que são verdadeiras obras de arte.</div>
+                    </div>
+                </div>
+
+                <div class="image-container">
+                    <img src="https://th.bing.com/th/id/R.311ce4aa9fa1d5524d918636514b1849?rik=e%2fHTtbXfdepBfw&riu=http%3a%2f%2fmacdesign.com.br%2fblog%2fwp-content%2fuploads%2f2018%2f01%2fcomo-a-arquitetura-comercial-impacta-nas-vendas.jpeg&ehk=Q4k1KgU6ZqRW4P7OoYyEJRjB5uDsTFBtokEa%2fCz0hm0%3d&risl=&pid=ImgRaw&r=0" alt="Projeto de arquitetura comercial" loading="lazy">
+                    <div class="overlay">
+                        <div class="text">Transformamos espaços comerciais em ambientes que atraem clientes e melhoram a eficiência operacional.</div>
+                    </div>
+                </div>
+
+                <div class="image-container">
+                    <img src="https://www.loricrizel.arq.br/wp-content/uploads/2020/06/arq-unv-02.jpg" alt="Projeto de arquitetura institucional" loading="lazy">
+                    <div class="overlay">
+                        <div class="text">Contribuímos para comunidades com projetos de espaços institucionais.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects" id="Projetos">
+            <div class="projects-banner">
+                <img src="https://cached.imagescaler.hbpl.co.uk/resize/scaleHeight/546/cached.offlinehbpl.hbpl.co.uk/galleries/NAW/NUH-ORAL-HEALTH_5.jpg" alt="Projeto arquitetônico de grande porte" loading="lazy">
+                <img class="projects-logo" src="foto/projeto.png" alt="Projetos Britto Architecture" loading="lazy">
+            </div>
+
+            <div class="project-gallery">
+                <div class="image-container">
+                    <img src="https://www.construtorapatriani.com.br/_next/image?url=https:%2F%2Fd1l3zvrqp603kj.cloudfront.net%2FBanner_e_perspectivas_galeria_4750_X2992_mirai_suzano_01_840ea68ad4.jpg&w=1920&q=100" alt="Apartamento no Centro Morumbi" loading="lazy">
+                    <div class="overlay"><div class="text">Apartamento no Centro Morumbi - São Paulo, SP - 2 dorm</div></div>
+                </div>
+
+                <div class="image-container">
+                    <img src="https://s3-sa-east-1.amazonaws.com/meuimovel/photo/Solidi/Solidi_IntenseVilaMariana_2.jpg" alt="Apartamento Intense Vila Mariana" loading="lazy">
+                    <div class="overlay"><div class="text">Apartamento Intense Vila Mariana - Vila Mariana - São Paulo, SP - 3 dorm</div></div>
+                </div>
+
+                <div class="image-container">
+                    <img src="https://www.ceramicaburguina.com.br/wp-content/uploads/2016/01/2-jardim-de-inverno.jpg" alt="Apartamento com jardim de inverno" loading="lazy">
+                    <div class="overlay"><div class="text">Apartamento Alphaville São Paulo, SP - 4 dorm</div></div>
+                </div>
+            </div>
+
+            <div class="project-gallery">
+                <div class="image-container">
+                    <img src="https://casaclaudia.abril.com.br/wp-content/uploads/2017/10/ape-01.jpg?quality=95&strip=info" alt="Apartamento Bello Sol" loading="lazy">
+                    <div class="overlay"><div class="text">Apartamento Bello Sol - São Paulo, SP - 2 dorm</div></div>
+                </div>
+
+                <div class="image-container">
+                    <img src="https://amaisd.com.br/wp-content/themes/theme/blog_images/3_4.jpg" alt="Apartamento com estilo industrial" loading="lazy">
+                    <div class="overlay"><div class="text">Apartamento Estilo industrial - São Paulo, SP - 3 dorm</div></div>
+                </div>
+
+                <div class="image-container">
+                    <img src="https://images.adsttc.com/media/images/580f/3b1a/e58e/ceb2/ec00/018a/newsletter/featured_image.jpg?1477393170" alt="Apartamento Roosevelt" loading="lazy">
+                    <div class="overlay"><div class="text">Apartamento Roosevelt - São Paulo, SP - 2 dorms</div></div>
+                </div>
+            </div>
+
+            <div class="project-gallery">
+                <div class="image-container">
+                    <img src="https://th.bing.com/th/id/R.7f0ebfddc5933d0e8050376b8f6670c4?rik=aHJA2wc0ZKqPMg&pid=ImgRaw&r=0" alt="Casa térrea com quintal" loading="lazy">
+                    <div class="overlay"><div class="text">Casa térrea + quintal - São Paulo, SP - 3 dorm</div></div>
+                </div>
+
+                <div class="image-container">
+                    <img src="https://i.pinimg.com/564x/3f/c7/60/3fc76086a272e491aa5e7705e98893ba.jpg" alt="Casa de estilo tropical" loading="lazy">
+                    <div class="overlay"><div class="text">Casa c/ andar superior estilo tropical - Pinheiros - São Paulo, SP - 4 dorm</div></div>
+                </div>
+
+                <div class="image-container">
+                    <img src="https://i.pinimg.com/564x/20/0c/35/200c35e1005d21f87370cb2c4d912009.jpg" alt="Casa de estilo moderno rústico" loading="lazy">
+                    <div class="overlay"><div class="text">Casa c/ andar estilo moderno rústico - Rio de Janeiro - 3 dorm</div></div>
+                </div>
+            </div>
+
+            <div class="project-gallery">
+                <div class="image-container">
+                    <img src="https://images.adsttc.com/media/images/6568/7494/0ca0/c32d/56aa/1b32/medium_jpg/casa-montes-claros-venta-arquitetos_31.jpg?1701344419" alt="Casa em Higienópolis" loading="lazy">
+                    <div class="overlay"><div class="text">Casa em Higienópolis - São Paulo, SP - 3 dorm</div></div>
+                </div>
+
+                <div class="image-container">
+                    <img src="https://th.bing.com/th/id/OIP.38_5bfpWpvHv30Sb-8E_owHaFA?rs=1&pid=ImgDetMain" alt="Bistrô Vista Rio" loading="lazy">
+                    <div class="overlay"><div class="text">Bistrô Vista Rio - Rio de Janeiro</div></div>
+                </div>
+
+                <div class="image-container">
+                    <img src="https://images.adsttc.com/media/images/53a2/2559/c07a/80fe/d500/01e0/large_jpg/PORTADA_50FRIENDS_01.jpg?1403135297" alt="Projeto de restaurante e bistrô" loading="lazy">
+                    <div class="overlay"><div class="text">Restaurante e Bistrô Rio - Rio de Janeiro</div></div>
+                </div>
+            </div>
+
+            <p class="portfolio-note">
+                Para mais informações, acesse nosso
+                <a href="#rodape">Portfólio</a>.
+            </p>
+        </section>
+    </main>
+
+    <footer id="rodape">
+        <img class="footer-image" src="foto/rodapé.png" alt="Informações de contato da Britto Architecture" loading="lazy">
+    </footer>
+
+    <script>
+        const menuToggle = document.querySelector(".menu-toggle");
+        const menu = document.querySelector("#menu-principal");
+
+        menuToggle.addEventListener("click", () => {
+            const aberto = menu.classList.toggle("open");
+
+            menuToggle.setAttribute("aria-expanded", String(aberto));
+            menuToggle.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
+            menuToggle.textContent = aberto ? "✕" : "☰";
+        });
+
+        menu.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                menu.classList.remove("open");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Abrir menu");
+                menuToggle.textContent = "☰";
+            });
+        });
+
+        document.querySelectorAll("img").forEach(img => {
+            img.addEventListener("error", () => {
+                if (img.dataset.failed) return;
+
+                img.dataset.failed = "true";
+                img.style.visibility = "hidden";
+
+                const container = img.closest(".image-container")
+                    || img.closest(".hero")
+                    || img.closest(".projects-banner")
+                    || img.closest("footer");
+
+                if (container) {
+                    container.classList.add("image-fallback");
+                }
+            });
+
+            if (img.complete && img.naturalWidth === 0 && img.src) {
+                img.dispatchEvent(new Event("error"));
+            }
+        });
+    </script>
+</body>
+</html>
